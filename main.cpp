@@ -1,6 +1,7 @@
 #include <iostream>
 #include "UniqueHolder.h"
 using namespace std;
+using namespace ISXUniqueHolder;
 
 int main()
 {
@@ -13,7 +14,7 @@ int main()
 
 	cout << test;
 
-	cout << holder.get_Type();
+	cout << holder.get_TypeName();
 
 	holder = false;
 
