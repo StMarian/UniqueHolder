@@ -15,51 +15,51 @@ UniqueHolder::UniqueHolder(const UniqueHolder& holder)
 	{
 	case Types::BOOL:
 		m_data.bool_type = holder.ToBool();
-		return;
+		break;
 	case Types::SIGNED_CHAR:
 		m_data.signed_char_type = holder.ToSignedChar();
-		return;
+		break;
 	case Types::UNSIGNED_CHAR:
 		m_data.unsigned_char_type = holder.ToUnsignedChar();
-		return;
+		break;
 	case Types::WCHAR_T:
 		m_data.wchar_t_type = holder.ToWchar_t();
-		return;
+		break;
 	case Types::SHORT_INT:
 		m_data.short_int_type = holder.ToShortInt();
-		return;
+		break;
 	case Types::UNSIGNED_SHORT_INT:
 		m_data.unsigned_short_int_type = holder.ToUnsignedShortInt();
-		return;
+		break;
 	case Types::INT:
 		m_data.int_type = holder.ToInt();
-		return;
+		break;
 	case Types::UNSIGNED_INT:
 		m_data.unsigned_int_type = holder.ToUnsignedInt();
-		return;
+		break;
 	case Types::LONG_INT:
 		m_data.long_int_type = holder.ToLongInt();
-		return;
+		break;
 	case Types::UNSIGNED_LONG_INT:
 		m_data.unsigned_long_int_type = holder.ToUnsignedLongInt();
-		return;
+		break;
 	case Types::LONG_LONG_INT:
 		m_data.long_long_int_type = holder.ToLongLongInt();
-		return;
+		break;
 	case Types::UNSIGNED_LONG_LONG_INT:
 		m_data.unsigned_long_long_int_type = holder.ToUnsignedLongLongInt();
-		return;
+		break;
 	case Types::FLOAT:
 		m_data.float_type = holder.ToFloat();
-		return;
+		break;
 	case Types::DOUBLE:
 		m_data.double_type = holder.ToDouble();
-		return;
+		break;
 	case Types::LONG_DOUBLE:
 		m_data.long_double_type = holder.ToLongDouble();
-		return;
+		break;
 	case Types::UNDEFINED:
-		return;
+		break;
 	}
 
 }
