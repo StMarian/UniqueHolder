@@ -1,26 +1,47 @@
 #include <iostream>
 #include "UniqueHolder.h"
-using namespace std;
+
 using namespace ISXUniqueHolder;
 
 int main()
 {
 
+	// boolean holder
 	UniqueHolder holder(true);
-
-	bool test = false;
-
-	test = holder.ToBool();
-
-	cout << test;
-
-	cout << holder.get_TypeName();
+	std::cout << holder << std::endl;
 
 	holder = false;
+	std::cout << holder << std::endl;
 
-	test = holder.ToBool();
+	holder = 3.1415;
+	std::cout << holder << std::endl;
 
-	cout << test;
+	try
+	{
+		int i = holder.ToInt();
+	}
+	catch (bad_type& bt)
+	{
+		std::cout << bt.what() << std::endl;
+	}
+
+	holder = (signed char)'o';
+	std::cout << holder << std::endl;
+
+
+	signed char c = holder.ToSignedChar();
+	std::cout << "c: " << c << std::endl;
+
+
+	try
+	{
+		holder.ResetData();
+		bool b = holder.ToBool();
+	}
+	catch (bad_type& bt)
+	{
+		std::cout << bt.what() << std::endl;
+	}
 
 	system("pause");
 	return 0;

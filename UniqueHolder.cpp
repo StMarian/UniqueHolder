@@ -3,9 +3,7 @@
 namespace ISXUniqueHolder
 {
 
-const char* const UniqueHolder::s_bad_type_exception_msg = "Bad Type";
-
-UniqueHolder::UniqueHolder() : m_data_type(TYPE_UNDEFINED)
+UniqueHolder::UniqueHolder() : m_data_type(Types::UNDEFINED)
 {
 }
 
@@ -15,128 +13,128 @@ UniqueHolder::UniqueHolder(const UniqueHolder& holder)
 
 	switch (m_data_type)
 	{
-	case TYPE_BOOL:
+	case Types::BOOL:
 		m_data.bool_type = holder.ToBool();
 		return;
-	case TYPE_SIGNED_CHAR:
+	case Types::SIGNED_CHAR:
 		m_data.signed_char_type = holder.ToSignedChar();
 		return;
-	case TYPE_UNSIGNED_CHAR:
+	case Types::UNSIGNED_CHAR:
 		m_data.unsigned_char_type = holder.ToUnsignedChar();
 		return;
-	case TYPE_WCHAR_T:
+	case Types::WCHAR_T:
 		m_data.wchar_t_type = holder.ToWchar_t();
 		return;
-	case TYPE_SHORT_INT:
+	case Types::SHORT_INT:
 		m_data.short_int_type = holder.ToShortInt();
 		return;
-	case TYPE_UNSIGNED_SHORT_INT:
+	case Types::UNSIGNED_SHORT_INT:
 		m_data.unsigned_short_int_type = holder.ToUnsignedShortInt();
 		return;
-	case TYPE_INT:
+	case Types::INT:
 		m_data.int_type = holder.ToInt();
 		return;
-	case TYPE_UNSIGNED_INT:
+	case Types::UNSIGNED_INT:
 		m_data.unsigned_int_type = holder.ToUnsignedInt();
 		return;
-	case TYPE_LONG_INT:
+	case Types::LONG_INT:
 		m_data.long_int_type = holder.ToLongInt();
 		return;
-	case TYPE_UNSIGNED_LONG_INT:
+	case Types::UNSIGNED_LONG_INT:
 		m_data.unsigned_long_int_type = holder.ToUnsignedLongInt();
 		return;
-	case TYPE_LONG_LONG_INT:
+	case Types::LONG_LONG_INT:
 		m_data.long_long_int_type = holder.ToLongLongInt();
 		return;
-	case TYPE_UNSIGNED_LONG_LONG_INT:
+	case Types::UNSIGNED_LONG_LONG_INT:
 		m_data.unsigned_long_long_int_type = holder.ToUnsignedLongLongInt();
 		return;
-	case TYPE_FLOAT:
+	case Types::FLOAT:
 		m_data.float_type = holder.ToFloat();
 		return;
-	case TYPE_DOUBLE:
+	case Types::DOUBLE:
 		m_data.double_type = holder.ToDouble();
 		return;
-	case TYPE_LONG_DOUBLE:
+	case Types::LONG_DOUBLE:
 		m_data.long_double_type = holder.ToLongDouble();
 		return;
-	case TYPE_UNDEFINED:
+	case Types::UNDEFINED:
 		return;
 	}
 
 }
 
-UniqueHolder::UniqueHolder(bool bool_type) : m_data_type(TYPE_BOOL)
+UniqueHolder::UniqueHolder(bool bool_type) : m_data_type(Types::BOOL)
 {
 	m_data.bool_type = bool_type;
 }
 
-UniqueHolder::UniqueHolder(signed char signed_char_type) : m_data_type(TYPE_SIGNED_CHAR)
+UniqueHolder::UniqueHolder(signed char signed_char_type) : m_data_type(Types::SIGNED_CHAR)
 {
 	m_data.signed_char_type = signed_char_type;
 }
 
-UniqueHolder::UniqueHolder(unsigned char unsigned_char_type) : m_data_type(TYPE_UNSIGNED_CHAR)
+UniqueHolder::UniqueHolder(unsigned char unsigned_char_type) : m_data_type(Types::UNSIGNED_CHAR)
 {
 	m_data.unsigned_char_type = unsigned_char_type;
 }
 
-UniqueHolder::UniqueHolder(wchar_t wchar_t_type) : m_data_type(TYPE_WCHAR_T)
+UniqueHolder::UniqueHolder(wchar_t wchar_t_type) : m_data_type(Types::WCHAR_T)
 {
 	m_data.wchar_t_type = wchar_t_type;
 }
 
-UniqueHolder::UniqueHolder(short int short_int_type) : m_data_type(TYPE_SHORT_INT)
+UniqueHolder::UniqueHolder(short int short_int_type) : m_data_type(Types::SHORT_INT)
 {
 	m_data.short_int_type = short_int_type;
 }
 
-UniqueHolder::UniqueHolder(unsigned short int unsigned_short_int_type) : m_data_type(TYPE_UNSIGNED_SHORT_INT)
+UniqueHolder::UniqueHolder(unsigned short int unsigned_short_int_type) : m_data_type(Types::UNSIGNED_SHORT_INT)
 {
 	m_data.unsigned_short_int_type = unsigned_short_int_type;
 }
 
-UniqueHolder::UniqueHolder(int int_type) : m_data_type(TYPE_INT)
+UniqueHolder::UniqueHolder(int int_type) : m_data_type(Types::INT)
 {
 	m_data.int_type = int_type;
 }
 
-UniqueHolder::UniqueHolder(unsigned int unsigned_int_type) : m_data_type(TYPE_UNSIGNED_INT)
+UniqueHolder::UniqueHolder(unsigned int unsigned_int_type) : m_data_type(Types::UNSIGNED_INT)
 {
 	m_data.unsigned_int_type = unsigned_int_type;
 }
 
-UniqueHolder::UniqueHolder(long int long_int_type) : m_data_type(TYPE_LONG_INT)
+UniqueHolder::UniqueHolder(long int long_int_type) : m_data_type(Types::LONG_INT)
 {
 	m_data.long_int_type = long_int_type;
 }
 
-UniqueHolder::UniqueHolder(unsigned long int unsigned_long_int_type) : m_data_type(TYPE_UNSIGNED_LONG_INT)
+UniqueHolder::UniqueHolder(unsigned long int unsigned_long_int_type) : m_data_type(Types::UNSIGNED_LONG_INT)
 {
 	m_data.unsigned_long_int_type = unsigned_long_int_type;
 }
 
-UniqueHolder::UniqueHolder(long long int long_long_int_type) : m_data_type(TYPE_LONG_LONG_INT)
+UniqueHolder::UniqueHolder(long long int long_long_int_type) : m_data_type(Types::LONG_LONG_INT)
 {
 	m_data.long_long_int_type = long_long_int_type;
 }
 
-UniqueHolder::UniqueHolder(unsigned long long int unsigned_long_long_int_type) : m_data_type(TYPE_UNSIGNED_LONG_LONG_INT)
+UniqueHolder::UniqueHolder(unsigned long long int unsigned_long_long_int_type) : m_data_type(Types::UNSIGNED_LONG_LONG_INT)
 {
 	m_data.unsigned_long_long_int_type = unsigned_long_long_int_type;
 }
 
-UniqueHolder::UniqueHolder(float float_type) : m_data_type(TYPE_FLOAT)
+UniqueHolder::UniqueHolder(float float_type) : m_data_type(Types::FLOAT)
 {
 	m_data.float_type = float_type;
 }
 
-UniqueHolder::UniqueHolder(double double_type) : m_data_type(TYPE_DOUBLE)
+UniqueHolder::UniqueHolder(double double_type) : m_data_type(Types::DOUBLE)
 {
 	m_data.double_type = double_type;
 }
 
-UniqueHolder::UniqueHolder(long double long_double_type) : m_data_type(TYPE_LONG_DOUBLE)
+UniqueHolder::UniqueHolder(long double long_double_type) : m_data_type(Types::LONG_DOUBLE)
 {
 	m_data.long_double_type = long_double_type;
 }
@@ -158,105 +156,105 @@ UniqueHolder& UniqueHolder::operator=(const UniqueHolder& rhs)
 UniqueHolder& UniqueHolder::operator=(const bool rhs)
 {
 	this->m_data.bool_type = rhs;
-	this->m_data_type = TYPE_BOOL;
+	this->m_data_type = Types::BOOL;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const signed char rhs)
 {
 	this->m_data.signed_char_type = rhs;
-	this->m_data_type = TYPE_SIGNED_CHAR;
+	this->m_data_type = Types::SIGNED_CHAR;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const unsigned char rhs)
 {
 	this->m_data.unsigned_char_type = rhs;
-	this->m_data_type = TYPE_UNSIGNED_CHAR;
+	this->m_data_type = Types::UNSIGNED_CHAR;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const wchar_t rhs)
 {
 	this->m_data.wchar_t_type = rhs;
-	this->m_data_type = TYPE_WCHAR_T;
+	this->m_data_type = Types::WCHAR_T;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const short int rhs)
 {
 	this->m_data.short_int_type = rhs;
-	this->m_data_type = TYPE_SHORT_INT;
+	this->m_data_type = Types::SHORT_INT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const unsigned short int rhs)
 {
 	this->m_data.unsigned_short_int_type = rhs;
-	this->m_data_type = TYPE_UNSIGNED_SHORT_INT;
+	this->m_data_type = Types::UNSIGNED_SHORT_INT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const int rhs)
 {
 	this->m_data.int_type = rhs;
-	this->m_data_type = TYPE_INT;
+	this->m_data_type = Types::INT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const unsigned int rhs)
 {
 	this->m_data.unsigned_int_type = rhs;
-	this->m_data_type = TYPE_UNSIGNED_INT;
+	this->m_data_type = Types::UNSIGNED_INT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const long int rhs)
 {
 	this->m_data.long_int_type = rhs;
-	this->m_data_type = TYPE_LONG_INT;
+	this->m_data_type = Types::LONG_INT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const unsigned long int rhs)
 {
 	this->m_data.unsigned_long_int_type = rhs;
-	this->m_data_type = TYPE_UNSIGNED_LONG_INT;
+	this->m_data_type = Types::UNSIGNED_LONG_INT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const long long int rhs)
 {
 	this->m_data.long_long_int_type = rhs;
-	this->m_data_type = TYPE_LONG_LONG_INT;
+	this->m_data_type = Types::LONG_LONG_INT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const unsigned long long int rhs)
 {
 	this->m_data.unsigned_long_long_int_type = rhs;
-	this->m_data_type = TYPE_UNSIGNED_LONG_LONG_INT;
+	this->m_data_type = Types::UNSIGNED_LONG_LONG_INT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const float rhs)
 {
 	this->m_data.float_type = rhs;
-	this->m_data_type = TYPE_FLOAT;
+	this->m_data_type = Types::FLOAT;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const double rhs)
 {
 	this->m_data.double_type = rhs;
-	this->m_data_type = TYPE_DOUBLE;
+	this->m_data_type = Types::DOUBLE;
 	return *this;
 }
 
 UniqueHolder& UniqueHolder::operator=(const long double rhs)
 {
 	this->m_data.long_double_type = rhs;
-	this->m_data_type = TYPE_LONG_DOUBLE;
+	this->m_data_type = Types::LONG_DOUBLE;
 	return *this;
 }
 
@@ -273,52 +271,52 @@ const char* UniqueHolder::get_TypeName() const
 
 	switch (m_data_type)
 	{
-	case TYPE_BOOL:
+	case Types::BOOL:
 		type = "bool";
 		break;
-	case TYPE_SIGNED_CHAR:
+	case Types::SIGNED_CHAR:
 		type = "signed char";
 		break;
-	case TYPE_UNSIGNED_CHAR:
+	case Types::UNSIGNED_CHAR:
 		type = "unsigned char";
 		break;
-	case TYPE_WCHAR_T:
+	case Types::WCHAR_T:
 		type = "wchar_t";
 		break;
-	case TYPE_SHORT_INT:
-		type = "wchar_t";
+	case Types::SHORT_INT:
+		type = "short int";
 		break;
-	case TYPE_UNSIGNED_SHORT_INT:
+	case Types::UNSIGNED_SHORT_INT:
 		type = "unsigned short int";
 		break;
-	case TYPE_INT:
+	case Types::INT:
 		type = "int";
 		break;
-	case TYPE_UNSIGNED_INT:
+	case Types::UNSIGNED_INT:
 		type = "unsigned int";
 		break;
-	case TYPE_LONG_INT:
+	case Types::LONG_INT:
 		type = "long int";
 		break;
-	case TYPE_UNSIGNED_LONG_INT:
+	case Types::UNSIGNED_LONG_INT:
 		type = "unsigned long int";
 		break;
-	case TYPE_LONG_LONG_INT:
+	case Types::LONG_LONG_INT:
 		type = "long long int";
 		break;
-	case TYPE_UNSIGNED_LONG_LONG_INT:
+	case Types::UNSIGNED_LONG_LONG_INT:
 		type = "unsigned long long int";
 		break;
-	case TYPE_FLOAT:
+	case Types::FLOAT:
 		type = "float";
 		break;
-	case TYPE_DOUBLE:
+	case Types::DOUBLE:
 		type = "double";
 		break;
-	case TYPE_LONG_DOUBLE:
+	case Types::LONG_DOUBLE:
 		type = "long double";
 		break;
-	case TYPE_UNDEFINED:
+	case Types::UNDEFINED:
 		type = "type undefined";
 		break;
 	}
@@ -326,11 +324,11 @@ const char* UniqueHolder::get_TypeName() const
 	return type;
 }
 
-bool UniqueHolder::ToBool() const
+bool UniqueHolder::ToBool() const noexcept(false)
 {
-	if (m_data_type != TYPE_BOOL)
+	if (m_data_type != Types::BOOL)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -338,11 +336,11 @@ bool UniqueHolder::ToBool() const
 	}
 }
 
-signed char UniqueHolder::ToSignedChar() const
+signed char UniqueHolder::ToSignedChar() const noexcept(false)
 {
-	if (m_data_type != TYPE_SIGNED_CHAR)
+	if (m_data_type != Types::SIGNED_CHAR)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -350,11 +348,11 @@ signed char UniqueHolder::ToSignedChar() const
 	}
 }
 
-unsigned char UniqueHolder::ToUnsignedChar() const
+unsigned char UniqueHolder::ToUnsignedChar() const noexcept(false)
 {
-	if (m_data_type != TYPE_UNSIGNED_CHAR)
+	if (m_data_type != Types::UNSIGNED_CHAR)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -362,11 +360,11 @@ unsigned char UniqueHolder::ToUnsignedChar() const
 	}
 }
 
-wchar_t UniqueHolder::ToWchar_t() const
+wchar_t UniqueHolder::ToWchar_t() const noexcept(false)
 {
-	if (m_data_type != TYPE_WCHAR_T)
+	if (m_data_type != Types::WCHAR_T)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -374,11 +372,11 @@ wchar_t UniqueHolder::ToWchar_t() const
 	}
 }
 
-short int UniqueHolder::ToShortInt() const
+short int UniqueHolder::ToShortInt() const noexcept(false)
 {
-	if (m_data_type != TYPE_SHORT_INT)
+	if (m_data_type != Types::SHORT_INT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -386,11 +384,11 @@ short int UniqueHolder::ToShortInt() const
 	}
 }
 
-unsigned short int UniqueHolder::ToUnsignedShortInt() const
+unsigned short int UniqueHolder::ToUnsignedShortInt() const noexcept(false)
 {
-	if (m_data_type != TYPE_UNSIGNED_SHORT_INT)
+	if (m_data_type != Types::UNSIGNED_SHORT_INT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -398,11 +396,11 @@ unsigned short int UniqueHolder::ToUnsignedShortInt() const
 	}
 }
 
-int UniqueHolder::ToInt() const
+int UniqueHolder::ToInt() const noexcept(false)
 {
-	if (m_data_type != TYPE_INT)
+	if (m_data_type != Types::INT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -410,23 +408,23 @@ int UniqueHolder::ToInt() const
 	}
 }
 
-unsigned int UniqueHolder::ToUnsignedInt() const
+unsigned int UniqueHolder::ToUnsignedInt() const noexcept(false)
 {
-	if (m_data_type != TYPE_UNSIGNED_INT)
+	if (m_data_type != Types::UNSIGNED_INT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
 		return m_data.unsigned_int_type;
 	}
 }
-
-long int UniqueHolder::ToLongInt() const
+ 
+long int UniqueHolder::ToLongInt() const noexcept(false)
 {
-	if (m_data_type != TYPE_LONG_INT)
+	if (m_data_type != Types::LONG_INT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -434,11 +432,11 @@ long int UniqueHolder::ToLongInt() const
 	}
 }
 
-unsigned long int UniqueHolder::ToUnsignedLongInt() const
+unsigned long int UniqueHolder::ToUnsignedLongInt() const noexcept(false)
 {
-	if (m_data_type != TYPE_UNSIGNED_LONG_INT)
+	if (m_data_type != Types::UNSIGNED_LONG_INT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -446,11 +444,11 @@ unsigned long int UniqueHolder::ToUnsignedLongInt() const
 	}
 }
 
-long long int UniqueHolder::ToLongLongInt() const
+long long int UniqueHolder::ToLongLongInt() const noexcept(false)
 {
-	if (m_data_type != TYPE_LONG_LONG_INT)
+	if (m_data_type != Types::LONG_LONG_INT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -458,11 +456,11 @@ long long int UniqueHolder::ToLongLongInt() const
 	}
 }
 
-unsigned long long int UniqueHolder::ToUnsignedLongLongInt() const
+unsigned long long int UniqueHolder::ToUnsignedLongLongInt() const noexcept(false)
 {
-	if (m_data_type != TYPE_UNSIGNED_LONG_LONG_INT)
+	if (m_data_type != Types::UNSIGNED_LONG_LONG_INT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -470,11 +468,11 @@ unsigned long long int UniqueHolder::ToUnsignedLongLongInt() const
 	}
 }
 
-float UniqueHolder::ToFloat() const
+float UniqueHolder::ToFloat() const noexcept(false)
 {
-	if (m_data_type != TYPE_FLOAT)
+	if (m_data_type != Types::FLOAT)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -482,11 +480,11 @@ float UniqueHolder::ToFloat() const
 	}
 }
 
-double UniqueHolder::ToDouble() const
+double UniqueHolder::ToDouble() const noexcept(false)
 {
-	if (m_data_type != TYPE_DOUBLE)
+	if (m_data_type != Types::DOUBLE)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -494,11 +492,11 @@ double UniqueHolder::ToDouble() const
 	}
 }
 
-long double UniqueHolder::ToLongDouble() const
+long double UniqueHolder::ToLongDouble() const noexcept(false)
 {
-	if (m_data_type != TYPE_LONG_DOUBLE)
+	if (m_data_type != Types::LONG_DOUBLE)
 	{
-		throw s_bad_type_exception_msg;
+		throw bad_type();
 	}
 	else
 	{
@@ -513,41 +511,112 @@ bool operator!=(const UniqueHolder& lhs, const UniqueHolder& rhs)
 
 	switch (rhs.get_Type())
 	{
-	case TYPE_BOOL:
+	case Types::BOOL:
 		if (rhs.m_data.bool_type != lhs.m_data.bool_type) return true;
-	case TYPE_SIGNED_CHAR:
+	case Types::SIGNED_CHAR:
 		if (rhs.m_data.signed_char_type != lhs.m_data.signed_char_type) return true;
-	case TYPE_UNSIGNED_CHAR:
+	case Types::UNSIGNED_CHAR:
 		if (rhs.m_data.unsigned_char_type != lhs.m_data.unsigned_char_type) return true;
-	case TYPE_WCHAR_T:
+	case Types::WCHAR_T:
 		if (rhs.m_data.wchar_t_type != lhs.m_data.wchar_t_type) return true;
-	case TYPE_SHORT_INT:
+	case Types::SHORT_INT:
 		if (rhs.m_data.short_int_type != lhs.m_data.short_int_type) return true;
-	case TYPE_UNSIGNED_SHORT_INT:
+	case Types::UNSIGNED_SHORT_INT:
 		if (rhs.m_data.unsigned_short_int_type != lhs.m_data.unsigned_short_int_type) return true;
-	case TYPE_INT:
+	case Types::INT:
 		if (rhs.m_data.int_type != lhs.m_data.int_type) return true;
-	case TYPE_UNSIGNED_INT:
+	case Types::UNSIGNED_INT:
 		if (rhs.m_data.unsigned_int_type != lhs.m_data.unsigned_int_type) return true;
-	case TYPE_LONG_INT:
+	case Types::LONG_INT:
 		if (rhs.m_data.long_int_type != lhs.m_data.long_int_type) return true;
-	case TYPE_UNSIGNED_LONG_INT:
+	case Types::UNSIGNED_LONG_INT:
 		if (rhs.m_data.unsigned_long_int_type != lhs.m_data.unsigned_long_int_type) return true;
-	case TYPE_LONG_LONG_INT:
+	case Types::LONG_LONG_INT:
 		if (rhs.m_data.long_long_int_type != lhs.m_data.long_long_int_type) return true;
-	case TYPE_UNSIGNED_LONG_LONG_INT:
+	case Types::UNSIGNED_LONG_LONG_INT:
 		if (rhs.m_data.unsigned_long_long_int_type != lhs.m_data.unsigned_long_long_int_type) return true;
-	case TYPE_FLOAT:
+	case Types::FLOAT:
 		if (rhs.m_data.float_type != lhs.m_data.float_type) return true;
-	case TYPE_DOUBLE:
+	case Types::DOUBLE:
 		if (rhs.m_data.double_type != lhs.m_data.double_type) return true;
-	case TYPE_LONG_DOUBLE:
+	case Types::LONG_DOUBLE:
 		if (rhs.m_data.long_double_type != lhs.m_data.long_double_type) return true;
-	case TYPE_UNDEFINED:
+	case Types::UNDEFINED:
 		return true;
 	}
 
 	return false;
+}
+
+std::ostream & operator<<(std::ostream& out, const UniqueHolder& obj)
+{
+	switch (obj.get_Type())
+	{
+	case Types::BOOL:
+		out << "bool ";
+		out << obj.m_data.bool_type;
+		break;
+	case Types::SIGNED_CHAR:
+		out << "signed char ";
+		out << obj.m_data.signed_char_type;
+		break;
+	case Types::UNSIGNED_CHAR:
+		out << "unsigned char ";
+		out << obj.m_data.unsigned_char_type;
+		break;
+	case Types::WCHAR_T:
+		out << "wchar_t ";
+		out << obj.m_data.wchar_t_type;
+		break;
+	case Types::SHORT_INT:
+		out << "short int ";
+		out << obj.m_data.short_int_type;
+		break;
+	case Types::UNSIGNED_SHORT_INT:
+		out << "unsigned short int" ;
+		out << obj.m_data.unsigned_short_int_type;
+		break;
+	case Types::INT:
+		out << "int ";
+		out << obj.m_data.int_type;
+		break;
+	case Types::UNSIGNED_INT:
+		out << "unsigned int ";
+		out << obj.m_data.unsigned_int_type;
+		break;
+	case Types::LONG_INT:
+		out << "long int ";
+		out << obj.m_data.long_int_type;
+		break;
+	case Types::UNSIGNED_LONG_INT:
+		out << "unsigned long int ";
+		out << obj.m_data.unsigned_long_int_type;
+		break;
+	case Types::LONG_LONG_INT:
+		out << "long long int ";
+		out << obj.m_data.long_long_int_type;
+		break;
+	case Types::UNSIGNED_LONG_LONG_INT:
+		out << "unsigned long long int ";
+		out << obj.m_data.unsigned_long_long_int_type;
+		break;
+	case Types::FLOAT:
+		out << "float ";
+		out << obj.m_data.float_type;
+		break;
+	case Types::DOUBLE:
+		out << "double ";
+		out << obj.m_data.double_type;
+		break;
+	case Types::LONG_DOUBLE:
+		out << "long double ";
+		out << obj.m_data.long_double_type;
+		break;
+	case Types::UNDEFINED:
+		out << "type undefined ";
+		break;
+	}
+	return out;
 }
 
 }

@@ -1,23 +1,21 @@
 #pragma once
 #include <typeinfo>
+#include <ostream>
+#include "bad_type.h"
 
 namespace ISXUniqueHolder
 {
 
-const enum Types {
-	TYPE_BOOL = 0, TYPE_SIGNED_CHAR, TYPE_UNSIGNED_CHAR, TYPE_WCHAR_T, TYPE_SHORT_INT, TYPE_UNSIGNED_SHORT_INT,
-	TYPE_INT, TYPE_UNSIGNED_INT, TYPE_LONG_INT, TYPE_UNSIGNED_LONG_INT, TYPE_LONG_LONG_INT, TYPE_UNSIGNED_LONG_LONG_INT, TYPE_FLOAT, TYPE_DOUBLE,
-	TYPE_LONG_DOUBLE, TYPE_UNDEFINED
+const enum class Types {
+	BOOL = 0, SIGNED_CHAR, UNSIGNED_CHAR, WCHAR_T, SHORT_INT, UNSIGNED_SHORT_INT, INT, UNSIGNED_INT, LONG_INT,
+	UNSIGNED_LONG_INT, LONG_LONG_INT, UNSIGNED_LONG_LONG_INT, FLOAT, DOUBLE, LONG_DOUBLE, UNDEFINED
 };
 
 class UniqueHolder final
 {
 public:
-	// Default constructor
 	UniqueHolder();
-	// Copy constructor
 	UniqueHolder(const UniqueHolder& holder);
-
 	UniqueHolder(bool bool_type);
 	UniqueHolder(signed char signed_char_type);
 	UniqueHolder(unsigned char unsigned_char_type);
@@ -33,10 +31,8 @@ public:
 	UniqueHolder(float float_type);
 	UniqueHolder(double double_type);
 	UniqueHolder(long double long_double_type);
-
 	~UniqueHolder();
 
-	// Assignment operators
 	UniqueHolder& operator=(const UniqueHolder& rhs);
 	UniqueHolder& operator=(const bool rhs);
 	UniqueHolder& operator=(const signed char rhs);
@@ -55,11 +51,10 @@ public:
 	UniqueHolder& operator=(const long double rhs);
 
 	friend bool operator!=(const UniqueHolder& lhs, const UniqueHolder& rhs);
+	friend std::ostream& operator<<(std::ostream& out, const UniqueHolder& obj);
 
 	static void Swap(UniqueHolder& lhs, UniqueHolder& rhs);
-
-	inline void ResetData() { this->m_data_type = TYPE_UNDEFINED; }
-	const char* get_TypeName() const;
+	inline void ResetData() { this->m_data_type = Types::UNDEFINED; }
 
 	bool ToBool() const;
 	signed char ToSignedChar() const;
@@ -77,11 +72,10 @@ public:
 	double ToDouble() const;
 	long double	ToLongDouble() const;
 
-private:
-	inline const Types get_Type() const { return m_data_type; }
-	inline void* RawData() { return &m_data; }
+	const char* get_TypeName() const;
 
-	static const char* const s_bad_type_exception_msg;
+private:
+	inline Types get_Type() const { return m_data_type; }
 
 	// Data holder union
 	union Holder
