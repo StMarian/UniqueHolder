@@ -9,59 +9,15 @@ UniqueHolder::UniqueHolder() : m_data_type(Types::UNDEFINED)
 
 UniqueHolder::UniqueHolder(const UniqueHolder& holder)
 {
-	m_data_type = holder.get_Type();
+	m_data_type = holder.m_data_type;
+	m_data = holder.m_data;
+}
 
-	switch (m_data_type)
-	{
-	case Types::BOOL:
-		m_data.bool_type = holder.ToBool();
-		break;
-	case Types::SIGNED_CHAR:
-		m_data.signed_char_type = holder.ToSignedChar();
-		break;
-	case Types::UNSIGNED_CHAR:
-		m_data.unsigned_char_type = holder.ToUnsignedChar();
-		break;
-	case Types::WCHAR_T:
-		m_data.wchar_t_type = holder.ToWchar_t();
-		break;
-	case Types::SHORT_INT:
-		m_data.short_int_type = holder.ToShortInt();
-		break;
-	case Types::UNSIGNED_SHORT_INT:
-		m_data.unsigned_short_int_type = holder.ToUnsignedShortInt();
-		break;
-	case Types::INT:
-		m_data.int_type = holder.ToInt();
-		break;
-	case Types::UNSIGNED_INT:
-		m_data.unsigned_int_type = holder.ToUnsignedInt();
-		break;
-	case Types::LONG_INT:
-		m_data.long_int_type = holder.ToLongInt();
-		break;
-	case Types::UNSIGNED_LONG_INT:
-		m_data.unsigned_long_int_type = holder.ToUnsignedLongInt();
-		break;
-	case Types::LONG_LONG_INT:
-		m_data.long_long_int_type = holder.ToLongLongInt();
-		break;
-	case Types::UNSIGNED_LONG_LONG_INT:
-		m_data.unsigned_long_long_int_type = holder.ToUnsignedLongLongInt();
-		break;
-	case Types::FLOAT:
-		m_data.float_type = holder.ToFloat();
-		break;
-	case Types::DOUBLE:
-		m_data.double_type = holder.ToDouble();
-		break;
-	case Types::LONG_DOUBLE:
-		m_data.long_double_type = holder.ToLongDouble();
-		break;
-	case Types::UNDEFINED:
-		break;
-	}
-
+UniqueHolder::UniqueHolder(UniqueHolder&& holder)
+{
+	m_data_type = holder.m_data_type;
+	m_data = holder.m_data;
+	// setting all pointers to dynamic memory in holder to nullptr
 }
 
 UniqueHolder::UniqueHolder(bool bool_type) : m_data_type(Types::BOOL)
@@ -143,14 +99,23 @@ UniqueHolder::~UniqueHolder()
 {
 }
 
-UniqueHolder& UniqueHolder::operator=(const UniqueHolder& rhs)
+UniqueHolder& UniqueHolder::operator=(UniqueHolder copy)
 {
-	if (*this != rhs)
+	if (this != copy)
 	{
-		this->m_data_type = rhs.m_data_type;
-		this->m_data = rhs.m_data;
+		Swap(copy, *this);
 	}
+	return *this;
+}
 
+UniqueHolder & UniqueHolder::operator=(UniqueHolder&& rhs)
+{
+	if (this != rhs)
+	{
+		m_data_type = rhs.m_data_type;
+		m_data = rhs.m_data;
+		// setting all pointers to dynamic memory in rhs to nullptr
+	}
 	return *this;
 }
 
@@ -261,9 +226,8 @@ UniqueHolder& UniqueHolder::operator=(const long double rhs)
 
 void UniqueHolder::Swap(UniqueHolder& lhs, UniqueHolder& rhs)
 {
-	UniqueHolder temp(lhs);
-	lhs = rhs;
-	rhs = temp;
+	std::swap(lhs.m_data, rhs.m_data);
+	std::swap(lhs.m_data_type, rhs.m_data_type);
 }
 
 const char* UniqueHolder::get_TypeName() const

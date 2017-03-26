@@ -30,6 +30,7 @@ class UniqueHolder final
 public:
 	UniqueHolder();
 	UniqueHolder(const UniqueHolder& holder);
+	UniqueHolder(UniqueHolder&& holder);
 	UniqueHolder(bool bool_type);
 	UniqueHolder(signed char signed_char_type);
 	UniqueHolder(unsigned char unsigned_char_type);
@@ -47,7 +48,8 @@ public:
 	UniqueHolder(long double long_double_type);
 	~UniqueHolder();
 
-	UniqueHolder& operator=(const UniqueHolder& rhs);
+	UniqueHolder& operator=(UniqueHolder copy);
+	UniqueHolder& operator=(UniqueHolder&& rhs);
 	UniqueHolder& operator=(const bool rhs);
 	UniqueHolder& operator=(const signed char rhs);
 	UniqueHolder& operator=(const unsigned char rhs);
