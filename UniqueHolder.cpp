@@ -147,7 +147,8 @@ UniqueHolder& UniqueHolder::operator=(const UniqueHolder& rhs)
 {
 	if (*this != rhs)
 	{
-		*this = UniqueHolder(rhs);
+		this->m_data_type = rhs.m_data_type;
+		this->m_data = rhs.m_data;
 	}
 
 	return *this;
