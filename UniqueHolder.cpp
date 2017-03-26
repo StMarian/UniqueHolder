@@ -513,110 +513,97 @@ bool operator!=(const UniqueHolder& lhs, const UniqueHolder& rhs)
 	switch (rhs.get_Type())
 	{
 	case Types::BOOL:
-		if (rhs.m_data.bool_type != lhs.m_data.bool_type) return true;
+		return rhs.m_data.bool_type != lhs.m_data.bool_type;
 	case Types::SIGNED_CHAR:
-		if (rhs.m_data.signed_char_type != lhs.m_data.signed_char_type) return true;
+		return rhs.m_data.signed_char_type != lhs.m_data.signed_char_type;
 	case Types::UNSIGNED_CHAR:
-		if (rhs.m_data.unsigned_char_type != lhs.m_data.unsigned_char_type) return true;
+		return rhs.m_data.unsigned_char_type != lhs.m_data.unsigned_char_type;
 	case Types::WCHAR_T:
-		if (rhs.m_data.wchar_t_type != lhs.m_data.wchar_t_type) return true;
+		return rhs.m_data.wchar_t_type != lhs.m_data.wchar_t_type;
 	case Types::SHORT_INT:
-		if (rhs.m_data.short_int_type != lhs.m_data.short_int_type) return true;
+		return rhs.m_data.short_int_type != lhs.m_data.short_int_type;
 	case Types::UNSIGNED_SHORT_INT:
-		if (rhs.m_data.unsigned_short_int_type != lhs.m_data.unsigned_short_int_type) return true;
+		return rhs.m_data.unsigned_short_int_type != lhs.m_data.unsigned_short_int_type;
 	case Types::INT:
-		if (rhs.m_data.int_type != lhs.m_data.int_type) return true;
+		return rhs.m_data.int_type != lhs.m_data.int_type;
 	case Types::UNSIGNED_INT:
-		if (rhs.m_data.unsigned_int_type != lhs.m_data.unsigned_int_type) return true;
+		return rhs.m_data.unsigned_int_type != lhs.m_data.unsigned_int_type;
 	case Types::LONG_INT:
-		if (rhs.m_data.long_int_type != lhs.m_data.long_int_type) return true;
+		return rhs.m_data.long_int_type != lhs.m_data.long_int_type;
 	case Types::UNSIGNED_LONG_INT:
-		if (rhs.m_data.unsigned_long_int_type != lhs.m_data.unsigned_long_int_type) return true;
+		return rhs.m_data.unsigned_long_int_type != lhs.m_data.unsigned_long_int_type;
 	case Types::LONG_LONG_INT:
-		if (rhs.m_data.long_long_int_type != lhs.m_data.long_long_int_type) return true;
+		return rhs.m_data.long_long_int_type != lhs.m_data.long_long_int_type;
 	case Types::UNSIGNED_LONG_LONG_INT:
-		if (rhs.m_data.unsigned_long_long_int_type != lhs.m_data.unsigned_long_long_int_type) return true;
+		return rhs.m_data.unsigned_long_long_int_type != lhs.m_data.unsigned_long_long_int_type;
 	case Types::FLOAT:
-		if (rhs.m_data.float_type != lhs.m_data.float_type) return true;
+		// if fabs < epsilon means they are equal, otherwise - not
+		return std::fabs(rhs.m_data.float_type - lhs.m_data.float_type) >= std::numeric_limits<float>::epsilon();
 	case Types::DOUBLE:
-		if (rhs.m_data.double_type != lhs.m_data.double_type) return true;
+		return std::fabs(rhs.m_data.double_type - lhs.m_data.double_type) >= std::numeric_limits<double>::epsilon();
 	case Types::LONG_DOUBLE:
-		if (rhs.m_data.long_double_type != lhs.m_data.long_double_type) return true;
+		return std::fabs(rhs.m_data.long_double_type - lhs.m_data.long_double_type) >= std::numeric_limits<long double>::epsilon();
 	case Types::UNDEFINED:
 		return true;
 	}
-
-	return false;
 }
 
 std::ostream & operator<<(std::ostream& out, const UniqueHolder& obj)
 {
+	out << obj.get_TypeName() << ": ";
+
 	switch (obj.get_Type())
 	{
 	case Types::BOOL:
-		out << "bool ";
 		out << obj.m_data.bool_type;
 		break;
 	case Types::SIGNED_CHAR:
-		out << "signed char ";
 		out << obj.m_data.signed_char_type;
 		break;
 	case Types::UNSIGNED_CHAR:
-		out << "unsigned char ";
 		out << obj.m_data.unsigned_char_type;
 		break;
 	case Types::WCHAR_T:
-		out << "wchar_t ";
 		out << obj.m_data.wchar_t_type;
 		break;
 	case Types::SHORT_INT:
-		out << "short int ";
 		out << obj.m_data.short_int_type;
 		break;
 	case Types::UNSIGNED_SHORT_INT:
-		out << "unsigned short int" ;
 		out << obj.m_data.unsigned_short_int_type;
 		break;
 	case Types::INT:
-		out << "int ";
 		out << obj.m_data.int_type;
 		break;
 	case Types::UNSIGNED_INT:
-		out << "unsigned int ";
 		out << obj.m_data.unsigned_int_type;
 		break;
 	case Types::LONG_INT:
-		out << "long int ";
 		out << obj.m_data.long_int_type;
 		break;
 	case Types::UNSIGNED_LONG_INT:
-		out << "unsigned long int ";
 		out << obj.m_data.unsigned_long_int_type;
 		break;
 	case Types::LONG_LONG_INT:
-		out << "long long int ";
 		out << obj.m_data.long_long_int_type;
 		break;
 	case Types::UNSIGNED_LONG_LONG_INT:
-		out << "unsigned long long int ";
 		out << obj.m_data.unsigned_long_long_int_type;
 		break;
 	case Types::FLOAT:
-		out << "float ";
 		out << obj.m_data.float_type;
 		break;
 	case Types::DOUBLE:
-		out << "double ";
 		out << obj.m_data.double_type;
 		break;
 	case Types::LONG_DOUBLE:
-		out << "long double ";
 		out << obj.m_data.long_double_type;
 		break;
 	case Types::UNDEFINED:
-		out << "type undefined ";
+		out << "can't represent data";
 		break;
 	}
+
 	return out;
 }
 
