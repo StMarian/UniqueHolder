@@ -40,7 +40,7 @@ int main()
 		std::cout << bt.what() << std::endl;
 	}
 
-	holder1 = (char)'r';
+	holder1 = (unsigned char)'a';
 	UniqueHolder holder2(90.1f);
 
 	std::cout << "Holder 1: " << holder1 << std::endl;
@@ -50,6 +50,9 @@ int main()
 
 	std::cout << "Holder 1: " << holder1 << std::endl;
 	std::cout << "Holder 2: " << holder2 << std::endl;
+
+	std::cout << "Type of Holder 1 is " << holder1.get_TypeName() << std::endl;
+	std::cout << "Type of Holder 2 is " << holder2.get_TypeName() << std::endl;
 
 	system("pause");
 	return 0;
