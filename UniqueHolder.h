@@ -1,5 +1,4 @@
 #pragma once
-#include <typeinfo>
 #include <ostream>
 
 namespace ISXUniqueHolder
@@ -8,6 +7,7 @@ namespace ISXUniqueHolder
 class bad_type;
 
 const enum class Types {
+	UNDEFINED = -1,
 	BOOL = 0, 
 	SIGNED_CHAR = 1, 
 	UNSIGNED_CHAR = 2,
@@ -23,7 +23,6 @@ const enum class Types {
 	FLOAT = 12,
 	DOUBLE = 13, 
 	LONG_DOUBLE = 14,
-	UNDEFINED = 15
 };
 
 class UniqueHolder final
@@ -49,14 +48,14 @@ public:
 	UniqueHolder(long double long_double_type);
 	~UniqueHolder();
 
-	UniqueHolder& operator=(UniqueHolder& copy);
+	UniqueHolder& operator=(const UniqueHolder& rhs);
 	UniqueHolder& operator=(UniqueHolder&& rhs);
 
 	friend bool operator!=(const UniqueHolder& lhs, const UniqueHolder& rhs);
 	friend std::ostream& operator<<(std::ostream& out, const UniqueHolder& obj);
 
 	static void Swap(UniqueHolder& lhs, UniqueHolder& rhs);
-	inline void ResetData() { this->m_data_type = Types::UNDEFINED; }
+	void ResetData() { this->m_data_type = Types::UNDEFINED; }
 
 	bool ToBool() const;
 	signed char ToSignedChar() const;
@@ -77,7 +76,7 @@ public:
 	const char* get_TypeName() const;
 
 private:
-	inline Types get_Type() const { return m_data_type; }
+	Types get_Type() const { return m_data_type; }
 
 	// Data holder union
 	union Holder

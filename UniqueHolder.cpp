@@ -4,7 +4,7 @@
 namespace ISXUniqueHolder
 {
 
-UniqueHolder::UniqueHolder() : m_data_type(Types::UNDEFINED)
+UniqueHolder::UniqueHolder() : m_data_type(Types::UNDEFINED), m_data{}
 {
 }
 
@@ -16,8 +16,10 @@ UniqueHolder::UniqueHolder(const UniqueHolder& holder)
 
 UniqueHolder::UniqueHolder(UniqueHolder&& holder)
 {
-	m_data_type = holder.m_data_type;
-	m_data = holder.m_data;
+	this->m_data = std::move(holder.m_data);
+	this->m_data_type = std::move(holder.m_data_type);
+	// setting holder to unworkable
+	holder.m_data_type = Types::UNDEFINED;
 	// setting all pointers to dynamic memory in holder to nullptr
 }
 
@@ -100,7 +102,7 @@ UniqueHolder::~UniqueHolder()
 {
 }
 
-UniqueHolder& UniqueHolder::operator=(UniqueHolder& rhs)
+UniqueHolder& UniqueHolder::operator=(const UniqueHolder& rhs)
 {
 	if (this != &rhs)
 	{
@@ -110,13 +112,16 @@ UniqueHolder& UniqueHolder::operator=(UniqueHolder& rhs)
 	return *this;
 }
 
-UniqueHolder & UniqueHolder::operator=(UniqueHolder&& rhs)
+UniqueHolder& UniqueHolder::operator=(UniqueHolder&& rhs)
 {
-	if (this != rhs)
+	if (this != &rhs)
 	{
-		m_data_type = rhs.m_data_type;
-		m_data = rhs.m_data;
-		// setting all pointers to dynamic memory in rhs to nullptr
+		this->m_data = std::move(rhs.m_data);
+		this->m_data_type = std::move(rhs.m_data_type);
+
+		// setting holder to unworkable
+		rhs.m_data_type = Types::UNDEFINED;
+		// setting all pointers to dynamic memory in holder to nullptr
 	}
 	return *this;
 }
@@ -129,61 +134,41 @@ void UniqueHolder::Swap(UniqueHolder& lhs, UniqueHolder& rhs)
 
 const char* UniqueHolder::get_TypeName() const
 {
-	char* type;
-
 	switch (m_data_type)
 	{
 	case Types::BOOL:
-		type = "bool";
-		break;
+		return "bool";
 	case Types::SIGNED_CHAR:
-		type = "signed char";
-		break;
+		return "signed char";
 	case Types::UNSIGNED_CHAR:
-		type = "unsigned char";
-		break;
+		return "unsigned char";
 	case Types::WCHAR_T:
-		type = "wchar_t";
-		break;
+		return "wchar_t";
 	case Types::SHORT_INT:
-		type = "short int";
-		break;
+		return "short int";
 	case Types::UNSIGNED_SHORT_INT:
-		type = "unsigned short int";
-		break;
+		return "unsigned short int";
 	case Types::INT:
-		type = "int";
-		break;
+		return "int";
 	case Types::UNSIGNED_INT:
-		type = "unsigned int";
-		break;
+		return "unsigned int";
 	case Types::LONG_INT:
-		type = "long int";
-		break;
+		return "long int";
 	case Types::UNSIGNED_LONG_INT:
-		type = "unsigned long int";
-		break;
+		return "unsigned long int";
 	case Types::LONG_LONG_INT:
-		type = "long long int";
-		break;
+		return "long long int";
 	case Types::UNSIGNED_LONG_LONG_INT:
-		type = "unsigned long long int";
-		break;
+		return "unsigned long long int";
 	case Types::FLOAT:
-		type = "float";
-		break;
+		return "float";
 	case Types::DOUBLE:
-		type = "double";
-		break;
+		return "double";
 	case Types::LONG_DOUBLE:
-		type = "long double";
-		break;
+		return "long double";
 	case Types::UNDEFINED:
-		type = "type undefined";
-		break;
+		return "type undefined";
 	}
-
-	return type;
 }
 
 bool UniqueHolder::ToBool() const noexcept(false)
@@ -416,56 +401,38 @@ std::ostream & operator<<(std::ostream& out, const UniqueHolder& obj)
 	switch (obj.get_Type())
 	{
 	case Types::BOOL:
-		out << obj.m_data.bool_type;
-		break;
+		return out << obj.m_data.bool_type;
 	case Types::SIGNED_CHAR:
-		out << obj.m_data.signed_char_type;
-		break;
+		return out << obj.m_data.signed_char_type;
 	case Types::UNSIGNED_CHAR:
-		out << obj.m_data.unsigned_char_type;
-		break;
+		return out << obj.m_data.unsigned_char_type;
 	case Types::WCHAR_T:
-		out << obj.m_data.wchar_t_type;
-		break;
+		return out << obj.m_data.wchar_t_type;
 	case Types::SHORT_INT:
-		out << obj.m_data.short_int_type;
-		break;
+		return out << obj.m_data.short_int_type;
 	case Types::UNSIGNED_SHORT_INT:
-		out << obj.m_data.unsigned_short_int_type;
-		break;
+		return out << obj.m_data.unsigned_short_int_type;
 	case Types::INT:
-		out << obj.m_data.int_type;
-		break;
+		return out << obj.m_data.int_type;
 	case Types::UNSIGNED_INT:
-		out << obj.m_data.unsigned_int_type;
-		break;
+		return out << obj.m_data.unsigned_int_type;
 	case Types::LONG_INT:
-		out << obj.m_data.long_int_type;
-		break;
+		return out << obj.m_data.long_int_type;
 	case Types::UNSIGNED_LONG_INT:
-		out << obj.m_data.unsigned_long_int_type;
-		break;
+		return out << obj.m_data.unsigned_long_int_type;
 	case Types::LONG_LONG_INT:
-		out << obj.m_data.long_long_int_type;
-		break;
+		return out << obj.m_data.long_long_int_type;
 	case Types::UNSIGNED_LONG_LONG_INT:
-		out << obj.m_data.unsigned_long_long_int_type;
-		break;
+		return out << obj.m_data.unsigned_long_long_int_type;
 	case Types::FLOAT:
-		out << obj.m_data.float_type;
-		break;
+		return out << obj.m_data.float_type;
 	case Types::DOUBLE:
-		out << obj.m_data.double_type;
-		break;
+		return out << obj.m_data.double_type;
 	case Types::LONG_DOUBLE:
-		out << obj.m_data.long_double_type;
-		break;
+		return out << obj.m_data.long_double_type;
 	case Types::UNDEFINED:
-		out << "can't represent data";
-		break;
+		return out << "can't represent data";
 	}
-
-	return out;
 }
 
 }

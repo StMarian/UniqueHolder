@@ -9,10 +9,10 @@ int main()
 	UniqueHolder holder1(true);
 	std::cout << "Holder 1: " << holder1 << std::endl;
 
-	holder1 = false;
+	holder1 = false; 
 	std::cout << "Holder 1: " << holder1 << std::endl;
 
-	holder1 = 3.1415;
+	holder1 = 3.1415;						// calling constructor and move assignment operator
 	std::cout << "Holder 1: " << holder1 << std::endl;
 
 	try
