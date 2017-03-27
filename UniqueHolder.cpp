@@ -1,4 +1,5 @@
 #include "UniqueHolder.h"
+#include "bad_type.h"
 
 namespace ISXUniqueHolder
 {
@@ -117,111 +118,6 @@ UniqueHolder & UniqueHolder::operator=(UniqueHolder&& rhs)
 		m_data = rhs.m_data;
 		// setting all pointers to dynamic memory in rhs to nullptr
 	}
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const bool rhs)
-{
-	this->m_data.bool_type = rhs;
-	this->m_data_type = Types::BOOL;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const signed char rhs)
-{
-	this->m_data.signed_char_type = rhs;
-	this->m_data_type = Types::SIGNED_CHAR;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const unsigned char rhs)
-{
-	this->m_data.unsigned_char_type = rhs;
-	this->m_data_type = Types::UNSIGNED_CHAR;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const wchar_t rhs)
-{
-	this->m_data.wchar_t_type = rhs;
-	this->m_data_type = Types::WCHAR_T;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const short int rhs)
-{
-	this->m_data.short_int_type = rhs;
-	this->m_data_type = Types::SHORT_INT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const unsigned short int rhs)
-{
-	this->m_data.unsigned_short_int_type = rhs;
-	this->m_data_type = Types::UNSIGNED_SHORT_INT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const int rhs)
-{
-	this->m_data.int_type = rhs;
-	this->m_data_type = Types::INT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const unsigned int rhs)
-{
-	this->m_data.unsigned_int_type = rhs;
-	this->m_data_type = Types::UNSIGNED_INT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const long int rhs)
-{
-	this->m_data.long_int_type = rhs;
-	this->m_data_type = Types::LONG_INT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const unsigned long int rhs)
-{
-	this->m_data.unsigned_long_int_type = rhs;
-	this->m_data_type = Types::UNSIGNED_LONG_INT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const long long int rhs)
-{
-	this->m_data.long_long_int_type = rhs;
-	this->m_data_type = Types::LONG_LONG_INT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const unsigned long long int rhs)
-{
-	this->m_data.unsigned_long_long_int_type = rhs;
-	this->m_data_type = Types::UNSIGNED_LONG_LONG_INT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const float rhs)
-{
-	this->m_data.float_type = rhs;
-	this->m_data_type = Types::FLOAT;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const double rhs)
-{
-	this->m_data.double_type = rhs;
-	this->m_data_type = Types::DOUBLE;
-	return *this;
-}
-
-UniqueHolder& UniqueHolder::operator=(const long double rhs)
-{
-	this->m_data.long_double_type = rhs;
-	this->m_data_type = Types::LONG_DOUBLE;
 	return *this;
 }
 

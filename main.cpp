@@ -1,5 +1,6 @@
 #include <iostream>
 #include "UniqueHolder.h"
+#include "bad_type.h"
 
 using namespace ISXUniqueHolder;
 

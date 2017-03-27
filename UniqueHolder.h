@@ -1,10 +1,12 @@
 #pragma once
 #include <typeinfo>
 #include <ostream>
-#include "bad_type.h"
+//#include "bad_type.h"
 
 namespace ISXUniqueHolder
 {
+
+class bad_type;
 
 const enum class Types {
 	BOOL = 0, 
@@ -50,21 +52,21 @@ public:
 
 	UniqueHolder& operator=(UniqueHolder& copy);
 	UniqueHolder& operator=(UniqueHolder&& rhs);
-	UniqueHolder& operator=(const bool rhs);
-	UniqueHolder& operator=(const signed char rhs);
-	UniqueHolder& operator=(const unsigned char rhs);
-	UniqueHolder& operator=(const wchar_t rhs);
-	UniqueHolder& operator=(const short int rhs);
-	UniqueHolder& operator=(const unsigned short int rhs);
-	UniqueHolder& operator=(const int rhs);
-	UniqueHolder& operator=(const unsigned int rhs);
-	UniqueHolder& operator=(const long int rhs);
-	UniqueHolder& operator=(const unsigned long int rhs);
-	UniqueHolder& operator=(const long long int rhs);
-	UniqueHolder& operator=(const unsigned long long int rhs);
-	UniqueHolder& operator=(const float rhs);
-	UniqueHolder& operator=(const double rhs);
-	UniqueHolder& operator=(const long double rhs);
+	//UniqueHolder& operator=(const bool rhs);
+	//UniqueHolder& operator=(const signed char rhs);
+	//UniqueHolder& operator=(const unsigned char rhs);
+	//UniqueHolder& operator=(const wchar_t rhs);
+	//UniqueHolder& operator=(const short int rhs);
+	//UniqueHolder& operator=(const unsigned short int rhs);
+	//UniqueHolder& operator=(const int rhs);
+	//UniqueHolder& operator=(const unsigned int rhs);
+	//UniqueHolder& operator=(const long int rhs);
+	//UniqueHolder& operator=(const unsigned long int rhs);
+	//UniqueHolder& operator=(const long long int rhs);
+	//UniqueHolder& operator=(const unsigned long long int rhs);
+	//UniqueHolder& operator=(const float rhs);
+	//UniqueHolder& operator=(const double rhs);
+	//UniqueHolder& operator=(const long double rhs);
 
 	friend bool operator!=(const UniqueHolder& lhs, const UniqueHolder& rhs);
 	friend std::ostream& operator<<(std::ostream& out, const UniqueHolder& obj);
