@@ -48,7 +48,7 @@ public:
 	UniqueHolder(long double long_double_type);
 	~UniqueHolder();
 
-	UniqueHolder& operator=(UniqueHolder copy);
+	UniqueHolder& operator=(UniqueHolder& copy);
 	UniqueHolder& operator=(UniqueHolder&& rhs);
 	UniqueHolder& operator=(const bool rhs);
 	UniqueHolder& operator=(const signed char rhs);

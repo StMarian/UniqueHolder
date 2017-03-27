@@ -54,6 +54,9 @@ int main()
 	std::cout << "Type of Holder 1 is " << holder1.get_TypeName() << std::endl;
 	std::cout << "Type of Holder 2 is " << holder2.get_TypeName() << std::endl;
 
+	UniqueHolder holder3(std::move(holder2));
+	holder3 = std::move(holder1);
+
 	system("pause");
 	return 0;
 }

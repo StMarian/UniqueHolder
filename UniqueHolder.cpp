@@ -99,10 +99,11 @@ UniqueHolder::~UniqueHolder()
 {
 }
 
-UniqueHolder& UniqueHolder::operator=(UniqueHolder copy)
+UniqueHolder& UniqueHolder::operator=(UniqueHolder& rhs)
 {
-	if (this != copy)
+	if (this != &rhs)
 	{
+		UniqueHolder copy(rhs);
 		Swap(copy, *this);
 	}
 	return *this;
