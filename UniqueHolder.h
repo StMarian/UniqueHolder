@@ -71,7 +71,7 @@ public:
 	unsigned long long int ToUnsignedLongLongInt() const;
 	float ToFloat() const;
 	double ToDouble() const;
-	long double	ToLongDouble() const;
+	long double ToLongDouble() const;
 
 	const char* get_TypeName() const;
 
