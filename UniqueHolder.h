@@ -57,25 +57,27 @@ public:
 	static void Swap(UniqueHolder& lhs, UniqueHolder& rhs);
 	void ResetData() { this->m_data_type = Types::UNDEFINED; }
 
-	bool ToBool() const;
-	signed char ToSignedChar() const;
-	unsigned char ToUnsignedChar() const;
-	wchar_t	ToWchar_t() const;
-	short int ToShortInt() const;
-	unsigned short int ToUnsignedShortInt() const;
-	int ToInt() const;
-	unsigned int ToUnsignedInt() const;
-	long int ToLongInt() const;
-	unsigned long int ToUnsignedLongInt() const;
-	long long int ToLongLongInt() const;
-	unsigned long long int ToUnsignedLongLongInt() const;
-	float ToFloat() const;
-	double ToDouble() const;
-	long double ToLongDouble() const;
+	int ConvertToInt();
 
 	const char* get_TypeName() const;
-
+	bool get_Bool() const;
+	signed char get_SignedChar() const;
+	unsigned char get_UnsignedChar() const;
+	wchar_t	get_Wchar_t() const;
+	short int get_ShortInt() const;
+	unsigned short int get_UnsignedShortInt() const;
+	int get_Int() const;
+	unsigned int get_UnsignedInt() const;
+	long int get_LongInt() const;
+	unsigned long int get_UnsignedLongInt() const;
+	long long int get_LongLongInt() const;
+	unsigned long long int get_UnsignedLongLongInt() const;
+	float get_Float() const;
+	double get_Double() const;
+	long double get_LongDouble() const;
+	
 private:
+	Types m_data_type;
 	Types get_Type() const { return m_data_type; }
 
 	// Data holder union
@@ -89,7 +91,7 @@ private:
 
 		short int short_int_type;
 		unsigned short int unsigned_short_int_type;
-		int	int_type;
+		int int_type;
 		unsigned int unsigned_int_type;
 		long int long_int_type;
 		unsigned long int unsigned_long_int_type;
@@ -100,8 +102,6 @@ private:
 		double double_type;
 		long double long_double_type;
 	} m_data;
-
-	Types m_data_type;
 };
 
 }

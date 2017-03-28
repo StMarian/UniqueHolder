@@ -166,12 +166,13 @@ const char* UniqueHolder::get_TypeName() const
 		return "double";
 	case Types::LONG_DOUBLE:
 		return "long double";
-	case Types::UNDEFINED:
+	// Types::UNDEFINED or other
+	default:
 		return "type undefined";
 	}
 }
 
-bool UniqueHolder::ToBool() const noexcept(false)
+bool UniqueHolder::get_Bool() const noexcept(false)
 {
 	if (m_data_type != Types::BOOL)
 	{
@@ -183,7 +184,7 @@ bool UniqueHolder::ToBool() const noexcept(false)
 	}
 }
 
-signed char UniqueHolder::ToSignedChar() const noexcept(false)
+signed char UniqueHolder::get_SignedChar() const noexcept(false)
 {
 	if (m_data_type != Types::SIGNED_CHAR)
 	{
@@ -195,7 +196,7 @@ signed char UniqueHolder::ToSignedChar() const noexcept(false)
 	}
 }
 
-unsigned char UniqueHolder::ToUnsignedChar() const noexcept(false)
+unsigned char UniqueHolder::get_UnsignedChar() const noexcept(false)
 {
 	if (m_data_type != Types::UNSIGNED_CHAR)
 	{
@@ -207,7 +208,7 @@ unsigned char UniqueHolder::ToUnsignedChar() const noexcept(false)
 	}
 }
 
-wchar_t UniqueHolder::ToWchar_t() const noexcept(false)
+wchar_t UniqueHolder::get_Wchar_t() const noexcept(false)
 {
 	if (m_data_type != Types::WCHAR_T)
 	{
@@ -219,7 +220,7 @@ wchar_t UniqueHolder::ToWchar_t() const noexcept(false)
 	}
 }
 
-short int UniqueHolder::ToShortInt() const noexcept(false)
+short int UniqueHolder::get_ShortInt() const noexcept(false)
 {
 	if (m_data_type != Types::SHORT_INT)
 	{
@@ -231,7 +232,7 @@ short int UniqueHolder::ToShortInt() const noexcept(false)
 	}
 }
 
-unsigned short int UniqueHolder::ToUnsignedShortInt() const noexcept(false)
+unsigned short int UniqueHolder::get_UnsignedShortInt() const noexcept(false)
 {
 	if (m_data_type != Types::UNSIGNED_SHORT_INT)
 	{
@@ -243,7 +244,7 @@ unsigned short int UniqueHolder::ToUnsignedShortInt() const noexcept(false)
 	}
 }
 
-int UniqueHolder::ToInt() const noexcept(false)
+int UniqueHolder::get_Int() const noexcept(false)
 {
 	if (m_data_type != Types::INT)
 	{
@@ -255,7 +256,7 @@ int UniqueHolder::ToInt() const noexcept(false)
 	}
 }
 
-unsigned int UniqueHolder::ToUnsignedInt() const noexcept(false)
+unsigned int UniqueHolder::get_UnsignedInt() const noexcept(false)
 {
 	if (m_data_type != Types::UNSIGNED_INT)
 	{
@@ -267,7 +268,7 @@ unsigned int UniqueHolder::ToUnsignedInt() const noexcept(false)
 	}
 }
  
-long int UniqueHolder::ToLongInt() const noexcept(false)
+long int UniqueHolder::get_LongInt() const noexcept(false)
 {
 	if (m_data_type != Types::LONG_INT)
 	{
@@ -279,7 +280,7 @@ long int UniqueHolder::ToLongInt() const noexcept(false)
 	}
 }
 
-unsigned long int UniqueHolder::ToUnsignedLongInt() const noexcept(false)
+unsigned long int UniqueHolder::get_UnsignedLongInt() const noexcept(false)
 {
 	if (m_data_type != Types::UNSIGNED_LONG_INT)
 	{
@@ -291,7 +292,7 @@ unsigned long int UniqueHolder::ToUnsignedLongInt() const noexcept(false)
 	}
 }
 
-long long int UniqueHolder::ToLongLongInt() const noexcept(false)
+long long int UniqueHolder::get_LongLongInt() const noexcept(false)
 {
 	if (m_data_type != Types::LONG_LONG_INT)
 	{
@@ -303,7 +304,7 @@ long long int UniqueHolder::ToLongLongInt() const noexcept(false)
 	}
 }
 
-unsigned long long int UniqueHolder::ToUnsignedLongLongInt() const noexcept(false)
+unsigned long long int UniqueHolder::get_UnsignedLongLongInt() const noexcept(false)
 {
 	if (m_data_type != Types::UNSIGNED_LONG_LONG_INT)
 	{
@@ -315,7 +316,7 @@ unsigned long long int UniqueHolder::ToUnsignedLongLongInt() const noexcept(fals
 	}
 }
 
-float UniqueHolder::ToFloat() const noexcept(false)
+float UniqueHolder::get_Float() const noexcept(false)
 {
 	if (m_data_type != Types::FLOAT)
 	{
@@ -327,7 +328,7 @@ float UniqueHolder::ToFloat() const noexcept(false)
 	}
 }
 
-double UniqueHolder::ToDouble() const noexcept(false)
+double UniqueHolder::get_Double() const noexcept(false)
 {
 	if (m_data_type != Types::DOUBLE)
 	{
@@ -339,7 +340,7 @@ double UniqueHolder::ToDouble() const noexcept(false)
 	}
 }
 
-long double UniqueHolder::ToLongDouble() const noexcept(false)
+long double UniqueHolder::get_LongDouble() const noexcept(false)
 {
 	if (m_data_type != Types::LONG_DOUBLE)
 	{
@@ -349,6 +350,43 @@ long double UniqueHolder::ToLongDouble() const noexcept(false)
 	{
 		return m_data.long_double_type;
 	}
+}
+
+int UniqueHolder::ConvertToInt()
+{
+	// Type Undefined or inconvertible to integer
+	if (static_cast<int>(this->m_data_type) < 0 || static_cast<int>(this->m_data_type) > 6)
+	{
+		throw bad_type();
+	}
+	else
+	{
+		switch (this->m_data_type)
+		{
+		case Types::BOOL:
+			m_data.int_type = m_data.bool_type;
+			break;
+		case Types::SIGNED_CHAR:
+			m_data.int_type = m_data.signed_char_type;
+			break;
+		case Types::UNSIGNED_CHAR:
+			m_data.int_type = m_data.unsigned_char_type;
+			break;
+		case Types::WCHAR_T:
+			m_data.int_type = m_data.wchar_t_type;
+			break;
+		case Types::SHORT_INT:
+			m_data.int_type = m_data.short_int_type;
+			break;
+		case Types::UNSIGNED_SHORT_INT:
+			m_data.int_type = m_data.unsigned_short_int_type;
+			break;
+		}
+		
+		this->m_data_type = Types::INT;
+	}
+
+	return this->m_data.int_type;
 }
 
 bool operator!=(const UniqueHolder& lhs, const UniqueHolder& rhs)
@@ -389,7 +427,8 @@ bool operator!=(const UniqueHolder& lhs, const UniqueHolder& rhs)
 		return std::fabs(rhs.m_data.double_type - lhs.m_data.double_type) >= std::numeric_limits<double>::epsilon();
 	case Types::LONG_DOUBLE:
 		return std::fabs(rhs.m_data.long_double_type - lhs.m_data.long_double_type) >= std::numeric_limits<long double>::epsilon();
-	case Types::UNDEFINED:
+	// Types::UNDEFINED or other
+	default:
 		return true;
 	}
 }
@@ -430,7 +469,8 @@ std::ostream & operator<<(std::ostream& out, const UniqueHolder& obj)
 		return out << obj.m_data.double_type;
 	case Types::LONG_DOUBLE:
 		return out << obj.m_data.long_double_type;
-	case Types::UNDEFINED:
+	// Types::UNDEFINED or other
+	default:
 		return out << "can't represent data";
 	}
 }

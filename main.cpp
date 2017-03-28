@@ -17,7 +17,7 @@ int main()
 
 	try
 	{
-		int i = holder1.ToInt();
+		int i = holder1.get_Int();
 	}
 	catch (bad_type& bt)
 	{
@@ -27,14 +27,15 @@ int main()
 	holder1 = (signed char)'o';
 	std::cout << "Holder 1: " << holder1 << std::endl;
 
-
-	signed char c = holder1.ToSignedChar();
+	signed char c = holder1.get_SignedChar();
 	std::cout << "c: " << c << std::endl;
+
+	std::cout << "Convert to integer: " << holder1.ConvertToInt() << std::endl;
 
 	try
 	{
 		holder1.ResetData();
-		bool b = holder1.ToBool();
+		bool b = holder1.get_Bool();
 	}
 	catch (bad_type& bt)
 	{
