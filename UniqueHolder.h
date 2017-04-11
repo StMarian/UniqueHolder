@@ -1,7 +1,7 @@
 #pragma once
 #include <ostream>
 
-namespace ISXUniqueHolder
+namespace UHolder
 {
 
 class bad_type;
@@ -46,7 +46,7 @@ public:
 	UniqueHolder(float float_type);
 	UniqueHolder(double double_type);
 	UniqueHolder(long double long_double_type);
-	~UniqueHolder();
+	~UniqueHolder() = default;
 
 	UniqueHolder& operator=(const UniqueHolder& rhs);
 	UniqueHolder& operator=(UniqueHolder&& rhs);

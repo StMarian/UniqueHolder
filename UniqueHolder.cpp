@@ -1,7 +1,7 @@
 #include "UniqueHolder.h"
 #include "bad_type.h"
 
-namespace ISXUniqueHolder
+namespace UHolder
 {
 
 UniqueHolder::UniqueHolder() : m_data_type(Types::UNDEFINED), m_data{}
@@ -96,10 +96,6 @@ UniqueHolder::UniqueHolder(double double_type) : m_data_type(Types::DOUBLE)
 UniqueHolder::UniqueHolder(long double long_double_type) : m_data_type(Types::LONG_DOUBLE)
 {
 	m_data.long_double_type = long_double_type;
-}
-
-UniqueHolder::~UniqueHolder()
-{
 }
 
 UniqueHolder& UniqueHolder::operator=(const UniqueHolder& rhs)
@@ -353,10 +349,10 @@ long double UniqueHolder::get_LongDouble() const noexcept(false)
 }
 
 int UniqueHolder::ConvertToInt()
-{
-	// Type Undefined or inconvertible to integer
+{	
 	if (static_cast<int>(this->m_data_type) < 0 || static_cast<int>(this->m_data_type) > 6)
 	{
+		// Type Undefined or inconvertible to integer
 		throw bad_type();
 	}
 	else

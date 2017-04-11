@@ -1,7 +1,7 @@
 #pragma once
 #include <exception>
 
-namespace ISXUniqueHolder
+namespace UHolder
 {
 
 class bad_type : public std::exception

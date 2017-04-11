@@ -2,7 +2,7 @@
 #include "UniqueHolder.h"
 #include "bad_type.h"
 
-using namespace ISXUniqueHolder;
+using namespace UHolder;
 
 int main()
 {
